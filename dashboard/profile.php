@@ -74,13 +74,8 @@ include_once __DIR__ . '/../include/header.php';
                         </div>
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nombre Completo</label>
-                            <input type="text" class="form-control" id="name" value="<?php echo htmlspecialchars($user->user_metadata->name ?? ''); ?>">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="website" class="form-label">Sitio Web</label>
-                            <input type="url" class="form-control" id="website" value="<?php echo htmlspecialchars($user->user_metadata->website ?? ''); ?>">
+                            <label for="display_name" class="form-label">Nombre de Usuario (Display Name)</label>
+                            <input type="text" class="form-control" id="display_name" value="<?php echo htmlspecialchars($user->user_metadata->display_name ?? ''); ?>">
                         </div>
 
                         <div class="d-grid gap-2">
@@ -178,8 +173,7 @@ include_once __DIR__ . '/../include/header.php';
 document.getElementById('profileForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const website = document.getElementById('website').value;
+    const display_name = document.getElementById('display_name').value;
 
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
