@@ -28,6 +28,9 @@
 
 ## 🌟 Por qué elegir este framework
 
+![imagen](https://github.com/user-attachments/assets/72d269dd-1771-4604-83ba-c98fdd06b78e)
+
+
 ### La historia detrás del proyecto
 
 Este framework nació de la frustración con las soluciones existentes. Queríamos algo que fuera:
