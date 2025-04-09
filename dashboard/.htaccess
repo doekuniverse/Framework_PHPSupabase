@@ -1,10 +1,32 @@
 # Habilitar el motor de reescritura
 RewriteEngine On
 
+# Establecer la base para las reglas de reescritura
+RewriteBase /dashboard/
+
+# Asegurarse de que el directorio raíz cargue index.php
+DirectoryIndex index.php
+
 # Permitir que PHP maneje los archivos .php
 <FilesMatch "\.php$">
     SetHandler application/x-httpd-php
 </FilesMatch>
+
+# Ocultar extensiones .php
+# No reescribir si el archivo o directorio existe
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Reescribir /dashboard/nombre a /dashboard/nombre.php
+RewriteRule ^([^/\.]+)/?$ $1.php [L]
+
+# Redireccionar /dashboard/nombre.php a /dashboard/nombre
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /dashboard/([^/\.]+)\.php\ HTTP
+RewriteRule ^([^/\.]+)\.php$ /dashboard/$1 [R=301,L]
+
+# Redireccionar /dashboard/index a /dashboard/
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /dashboard/index\ HTTP
+RewriteRule ^index$ /dashboard/ [R=301,L]
 
 # Configuración de seguridad
 <IfModule mod_headers.c>
