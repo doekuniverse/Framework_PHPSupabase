@@ -54,7 +54,7 @@ $currentPath = $_SERVER['REQUEST_URI'];
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="/public/index.php">Mi Aplicación</a>
+            <a class="navbar-brand" href="/">Mi Aplicación</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,7 +63,7 @@ $currentPath = $_SERVER['REQUEST_URI'];
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?php echo $currentPath == '/public/index.php' || $currentPath == '/' ? 'active' : ''; ?>" href="/public/index.php">Inicio</a>
+                        <a class="nav-link <?php echo $currentPath == '/public/index.php' || $currentPath == '/' ? 'active' : ''; ?>" href="/">Inicio</a>
                     </li>
 
                     <?php if ($isAuthenticated): ?>
@@ -73,7 +73,7 @@ $currentPath = $_SERVER['REQUEST_URI'];
                     </li>
                     <?php endif; ?>
 
-                    
+
                 </ul>
 
                 <div class="d-flex">

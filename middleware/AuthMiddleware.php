@@ -190,7 +190,7 @@ class AuthMiddleware {
      *
      * @param string $redirectTo Ruta a la que redirigir después de cerrar sesión
      */
-    public function logout($redirectTo = '/public/index.php') {
+    public function logout($redirectTo = '/') {
         $this->clearSession();
 
         // Redirigir

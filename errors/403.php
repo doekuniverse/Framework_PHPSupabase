@@ -30,7 +30,7 @@ include_once __DIR__ . '/../include/header.php';
                     <?php endif; ?>
                 </div>
                 <div class="error-actions">
-                    <a href="/public/index.php" class="btn btn-primary btn-lg me-2">
+                    <a href="/" class="btn btn-primary btn-lg me-2">
                         <i class="bi bi-house-fill me-1"></i>Ir al Inicio
                     </a>
                     <?php if (!$isAuthenticated): ?>
@@ -46,7 +46,7 @@ include_once __DIR__ . '/../include/header.php';
             </div>
         </div>
     </div>
-    
+
     <div class="row mt-5">
         <div class="col-md-8 offset-md-2">
             <div class="card">

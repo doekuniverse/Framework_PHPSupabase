@@ -1,8 +1,12 @@
 # Habilitar el motor de reescritura
 RewriteEngine On
 
-# Redirigir las solicitudes con hash a la página de callback
+# Redirigir la raíz a public/index.php cuando no hay query string
 RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^$ /public/index.php [L]
+
+# Redirigir las solicitudes con query string a la página de callback
+RewriteCond %{QUERY_STRING} .+
 RewriteRule ^$ /auth/callback.php [L]
 
 # Permitir que PHP maneje los archivos .php
