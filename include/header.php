@@ -64,9 +64,12 @@ $currentPath = $_SERVER['REQUEST_URI'];
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
+                    <?php if (!$isAuthenticated): ?>
+                    <!-- Enlace de inicio solo para usuarios no autenticados -->
                     <li class="nav-item">
                         <a class="nav-link <?php echo $currentPath == '/public/index.php' || $currentPath == '/' ? 'active' : ''; ?>" href="/">Inicio</a>
                     </li>
+                    <?php endif; ?>
 
                     <?php if ($isAuthenticated): ?>
                     <!-- Enlaces para usuarios autenticados -->
