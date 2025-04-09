@@ -1,0 +1,26 @@
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Permitir que PHP maneje los archivos .php
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Configuración de seguridad
+<IfModule mod_headers.c>
+    # Prevenir clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    # Prevenir MIME-sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    # Habilitar protección XSS en navegadores modernos
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevenir acceso a archivos sensibles
+<FilesMatch "^\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|README\.md">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevenir listado de directorios
+Options -Indexes

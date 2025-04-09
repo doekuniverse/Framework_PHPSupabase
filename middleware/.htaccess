@@ -1,0 +1,8 @@
+# Denegar acceso directo a todos los archivos en este directorio
+<FilesMatch ".*">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevenir listado de directorios
+Options -Indexes

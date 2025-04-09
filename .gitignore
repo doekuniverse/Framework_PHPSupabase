@@ -1,0 +1,56 @@
+# Archivos de entorno
+.env
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Directorios de dependencias
+/vendor/
+/node_modules/
+
+# Archivos de caché
+*.cache
+*.log
+
+# Archivos de configuración local
+*.local.php
+config.local.php
+
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Archivos de IDE y editores
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.komodotools/
+*.code-workspace
+
+# Archivos de respaldo
+*~
+*.bak
+*.backup
+
+# Archivos de sesión PHP
+/sessions/
+sess_*
+
+# Archivos de caché de PHP
+*.php_cs.cache
+
+# Archivos de compilación
+*.compiled.*
+
+# Archivos de base de datos local
+*.sqlite
+*.db
+
+# Archivos de configuración sensibles
+auth.json
+credentials.json
