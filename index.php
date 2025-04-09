@@ -1,7 +1,7 @@
 <?php
 /**
  * Archivo principal de redirección
- * 
+ *
  * Este archivo maneja las redirecciones desde la raíz del sitio.
  * Si hay un hash en la URL (como en las redirecciones de Supabase),
  * redirige a la página de callback para procesar la autenticación.

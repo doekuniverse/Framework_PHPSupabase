@@ -49,11 +49,11 @@ include_once __DIR__ . '/../include/header.php';
 // Script para manejar el inicio de sesión con Supabase
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('errorMessage');
-    
+
     try {
         // Realizar solicitud al endpoint de login
         const response = await fetch('/auth/login_handler.php', {
@@ -63,9 +63,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             },
             body: JSON.stringify({ email, password })
         });
-        
+
         const data = await response.json();
-        
+
         if (data.error) {
             // Mostrar error
             errorMessage.textContent = data.error;
