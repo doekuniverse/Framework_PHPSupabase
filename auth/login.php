@@ -33,7 +33,10 @@ include_once __DIR__ . '/../include/header.php';
                             <label for="password" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <div class="alert alert-danger d-none" id="errorMessage"></div>
+                        <div class="alert alert-danger d-none" id="errorMessage" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <span class="error-text"></span>
+                        </div>
                         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                     </form>
                     <div class="mt-3">
@@ -53,6 +56,14 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('errorMessage');
+    const submitButton = this.querySelector('button[type="submit"]');
+
+    // Ocultar mensaje de error previo
+    errorMessage.classList.add('d-none');
+
+    // Deshabilitar botón y mostrar indicador de carga
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Iniciando sesión...';
 
     try {
         // Realizar solicitud al endpoint de login
@@ -68,16 +79,27 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
         if (data.error) {
             // Mostrar error
-            errorMessage.textContent = data.error;
+            errorMessage.querySelector('.error-text').textContent = data.error;
             errorMessage.classList.remove('d-none');
+
+            // Restaurar botón
+            submitButton.disabled = false;
+            submitButton.textContent = 'Iniciar sesión';
         } else {
             // Redirigir al dashboard
             window.location.href = '/dashboard/index.php';
         }
     } catch (error) {
-        // Mostrar error
-        errorMessage.textContent = 'Error al iniciar sesión. Inténtalo de nuevo.';
+        // Mostrar error genérico
+        errorMessage.querySelector('.error-text').textContent = 'Error al conectar con el servidor. Por favor, verifica tu conexión a internet e inténtalo de nuevo.';
         errorMessage.classList.remove('d-none');
+
+        // Restaurar botón
+        submitButton.disabled = false;
+        submitButton.textContent = 'Iniciar sesión';
+
+        // Registrar error en consola para depuración
+        console.error('Error de inicio de sesión:', error);
     }
 });
 </script>
