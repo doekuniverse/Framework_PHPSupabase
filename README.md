@@ -199,16 +199,16 @@ Las contribuciones son lo que hacen que la comunidad de código abierto sea un l
 
 ## 📜 Licencia
 
-Distribuido bajo la Licencia MIT. Ver `LICENSE` para más información.
+Open Source
 
 ## 📬 Contacto
 
-Tu Nombre - [@tu_twitter](https://twitter.com/tu_twitter) - email@ejemplo.com
+Kevin Diaz Farias - doekuniverse@gmail.com
 
-Enlace del proyecto: [https://github.com/tu-usuario/tu-repositorio](https://github.com/tu-usuario/tu-repositorio)
+Enlace del proyecto: https://github.com/doekuniverse/Framework_PHPSupabase
 
 ---
 
 <div align="center">
-Hecho con ❤️ por [Tu Nombre](https://github.com/tu-usuario)
+Hecho con ❤️ por [DoekUniverse](https://github.com/doekuniverse)
 </div>
