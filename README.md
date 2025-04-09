@@ -74,6 +74,7 @@ Después de meses de desarrollo y pruebas, creamos un framework que cumple con t
 - 📝 Código limpio y bien documentado
 - 🔄 Fácil de extender y personalizar
 - 📱 Diseño responsive con Bootstrap 5
+- 🌐 URLs limpias sin extensiones .php visibles
 
 ## 🚀 Comenzando
 
@@ -104,7 +105,8 @@ Después de meses de desarrollo y pruebas, creamos un framework que cumple con t
 
 4. **¡Listo para usar!**
    - Apunta tu servidor web al directorio del proyecto
-   - Visita la URL en tu navegador
+   - Visita http://localhost/ en tu navegador
+   - Disfruta de URLs limpias sin extensiones .php visibles
 
 ## 📂 Estructura del proyecto
 
@@ -132,6 +134,16 @@ Después de meses de desarrollo y pruebas, creamos un framework que cumple con t
 ```
 
 ## 📘 Guía de uso
+
+### URLs limpias
+
+El framework utiliza un sistema de redirección que permite URLs limpias sin extensiones .php visibles:
+
+- `http://localhost/` en lugar de `http://localhost/public/index.php`
+- `http://localhost/dashboard` en lugar de `http://localhost/dashboard/index.php`
+- `http://localhost/auth/login` en lugar de `http://localhost/auth/login.php`
+
+Esto se logra mediante reglas de redirección en el archivo `.htaccess` que mejoran la experiencia del usuario y la SEO.
 
 ### Crear una página protegida
 
@@ -174,16 +186,6 @@ Este framework implementa las mejores prácticas de seguridad:
 - **Cookies seguras**: Configuradas con HttpOnly, Secure y SameSite=Strict
 - **Protección contra ataques comunes**: CSRF, XSS, inyección SQL
 - **Manejo de errores seguro**: Mensajes de error personalizados sin exponer información sensible
-
-## 🛣️ Roadmap
-
-Estas son algunas de las características que planeamos implementar:
-
-- [ ] Autenticación con redes sociales (Google, Facebook, GitHub)
-- [ ] Sistema de roles y permisos
-- [ ] Recuperación de contraseña mejorada
-- [ ] Panel de administración
-- [ ] Integración con API de Supabase para almacenamiento
 
 ## 👥 Contribuir
 
