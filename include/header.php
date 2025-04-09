@@ -111,7 +111,7 @@ $currentPath = $_SERVER['REQUEST_URI'];
                             </span></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/dashboard/">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="/dashboard/profile">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="/dashboard/profile/">Mi Perfil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="/auth/logout.php">Cerrar Sesión</a></li>
                         </ul>

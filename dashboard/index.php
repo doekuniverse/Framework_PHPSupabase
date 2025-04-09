@@ -45,16 +45,7 @@ include_once __DIR__ . '/../include/header.php';
                         <li class="list-group-item">
                             <strong>Email:</strong> <?php echo htmlspecialchars($user->email); ?>
                         </li>
-                        <li class="list-group-item">
-                            <strong>Nickname:</strong>
-                            <?php
-                            if (isset($user->user_metadata->display_name)) {
-                                echo '@' . htmlspecialchars($user->user_metadata->display_name);
-                            } else {
-                                echo '<span class="text-muted">No establecido</span>';
-                            }
-                            ?>
-                        </li>
+
                         <li class="list-group-item">
                             <strong>Último inicio de sesión:</strong>
                             <?php echo isset($user->last_sign_in_at) ? date('d/m/Y H:i:s', strtotime($user->last_sign_in_at)) : 'N/A'; ?>
@@ -75,7 +66,7 @@ include_once __DIR__ . '/../include/header.php';
                 </div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <a href="#" class="btn btn-primary">Editar Perfil</a>
+                        <a href="/dashboard/profile/" class="btn btn-primary">Editar Perfil</a>
                         <a href="#" class="btn btn-info">Ver Actividad</a>
                         <a href="/auth/logout.php" class="btn btn-danger">Cerrar Sesión</a>
                     </div>

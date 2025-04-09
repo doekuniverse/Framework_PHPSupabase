@@ -7,13 +7,13 @@
  */
 
 // Incluir el middleware de inicialización
-require_once __DIR__ . '/../middleware/init.php';
+require_once __DIR__ . '/../../middleware/init.php';
 
 // Proteger esta página - muestra error 403 si no está autenticado
 $user = $auth->protectPage('/errors/403.php');
 
 // Incluir el header
-include_once __DIR__ . '/../include/header.php';
+include_once __DIR__ . '/../../include/header.php';
 ?>
 
 <div class="container mt-5">
@@ -284,5 +284,5 @@ document.getElementById('deleteAccountButton').addEventListener('click', async f
 
 <?php
 // Incluir el footer
-include_once __DIR__ . '/../include/footer.php';
+include_once __DIR__ . '/../../include/footer.php';
 ?>

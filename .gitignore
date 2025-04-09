@@ -1,6 +1,6 @@
 # Archivos de entorno
 .env
-
+profile_table.sql
 # Archivos de sistema
 .DS_Store
 Thumbs.db
