@@ -88,8 +88,8 @@ $currentPath = $_SERVER['REQUEST_URI'];
                             <?php endif; ?>
                             <?php
                             // Mostrar nickname si existe, de lo contrario mostrar email
-                            if (isset($currentUser->user_metadata->display_name)) {
-                                echo '@' . htmlspecialchars($currentUser->user_metadata->display_name);
+                            if (isset($currentUser->user_metadata->email)) {
+                                echo '' . htmlspecialchars($currentUser->user_metadata->email);
                             } else {
                                 echo htmlspecialchars($currentUser->email);
                             }
@@ -100,7 +100,6 @@ $currentPath = $_SERVER['REQUEST_URI'];
                                 <?php
                                 // Mostrar nickname y email
                                 if (isset($currentUser->user_metadata->display_name)) {
-                                    echo '@' . htmlspecialchars($currentUser->user_metadata->display_name) . '<br>';
                                     echo '<small class="text-muted">' . htmlspecialchars($currentUser->email) . '</small>';
                                 } else {
                                     echo htmlspecialchars($currentUser->email);

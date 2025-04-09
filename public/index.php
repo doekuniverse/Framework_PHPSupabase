@@ -20,12 +20,12 @@ include_once __DIR__ . '/../include/header.php';
             <?php if ($isAuthenticated): ?>
             <p class="lead">Hola,
                 <?php
-                if (isset($currentUser->user_metadata->display_name)) {
-                    echo '@' . htmlspecialchars($currentUser->user_metadata->display_name);
+                if (isset($currentUser->user_metadata->email)) {
+                    echo ''. htmlspecialchars($currentUser->user_metadata->email);
                 } else {
                     echo htmlspecialchars($currentUser->email);
                 }
-                ?>! Gracias por iniciar sesión.</p>
+                ?><br>Gracias por iniciar sesión.</p>
             <div class="mt-4">
                 <a href="/dashboard/index.php" class="btn btn-primary btn-lg">Ir al Dashboard</a>
             </div>
