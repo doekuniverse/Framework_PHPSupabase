@@ -41,17 +41,17 @@ Este proyecto es una aplicación web PHP que implementa un sistema de autenticac
 
 ## Estructura del Proyecto
 
-```
-|- auth (Carpeta que contiene Login & Registro)
-|- dashboard (Carpeta que contiene archivos protegidos)
-|- errors (Carpeta que contiene páginas de error personalizadas)
-|- include (Carpeta que contiene archivos de inclusión)
-|-- header.php (Archivo de encabezado dinámico)
-|- middleware (Carpeta que contiene archivos de middleware)
-|- public (Carpeta que contiene archivos públicos)
-|-- index.php (Archivo principal de la página de inicio)
-|.env (Archivo de configuración de variables de entorno)
-|.env-example (Ejemplo de configuración de variables de entorno)
+```plaintext
+├── auth/               # Carpeta que contiene Login & Registro
+├── dashboard/          # Carpeta que contiene archivos protegidos
+├── errors/             # Carpeta que contiene páginas de error personalizadas
+├── include/            # Carpeta que contiene archivos de inclusión
+│   └── header.php      # Archivo de encabezado dinámico
+├── middleware/         # Carpeta que contiene archivos de middleware
+├── public/             # Carpeta que contiene archivos públicos
+│   └── index.php       # Archivo principal de la página de inicio
+├── .env                # Archivo de configuración de variables de entorno
+└── .env-example        # Ejemplo de configuración de variables de entorno
 ```
 
 ## Configuración de Supabase
