@@ -43,10 +43,34 @@ include_once __DIR__ . '/../include/header.php';
                         <?php endif; ?>
                     </div>
 
+                    <?php if (isset($user->user_metadata->display_name) && !empty($user->user_metadata->display_name)): ?>
+                    <h4 class="mb-2">ID: <?php echo htmlspecialchars($user->user_metadata->display_name); ?></h4>
+                    <?php endif; ?>
+
                     <h5><?php echo htmlspecialchars($user->email); ?></h5>
                     <p class="text-muted">
-                        Usuario desde: <?php echo date('d/m/Y', strtotime($user->created_at)); ?>
+                        Usuario desde: <?php
+                        // Mostrar la fecha de creación correcta
+                        if (isset($user->created_at)) {
+                            // Convertir la fecha UTC a la zona horaria local
+                            $date = new DateTime($user->created_at, new DateTimeZone('UTC'));
+                            $date->setTimezone(new DateTimeZone('America/Santiago')); // Ajusta esto a tu zona horaria
+                            echo $date->format('d/m/Y');
+                        } else {
+                            echo 'N/A';
+                        }
+                        ?>
                     </p>
+
+                    <?php
+                    // Código de depuración - Comentar o eliminar en producción
+                    if (isset($_GET['debug']) && $_GET['debug'] === '1'):
+                    ?>
+                    <div class="alert alert-info mt-3 small">
+                        <strong>Datos del usuario (Debug):</strong><br>
+                        <pre><?php print_r($user); ?></pre>
+                    </div>
+                    <?php endif; ?>
 
                     <div class="d-grid gap-2">
                         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
@@ -73,13 +97,17 @@ include_once __DIR__ . '/../include/header.php';
                             <div class="form-text">El correo electrónico no se puede cambiar.</div>
                         </div>
 
+                        <?php if (isset($user->user_metadata->display_name) && !empty($user->user_metadata->display_name)): ?>
                         <div class="mb-3">
-                            <label for="display_name" class="form-label">Nombre de Usuario (Display Name)</label>
-                            <input type="text" class="form-control" id="display_name" value="<?php echo htmlspecialchars($user->user_metadata->display_name ?? ''); ?>">
+                            <label for="display_name" class="form-label">ID de Usuario (Display Name)</label>
+                            <input type="text" class="form-control" id="display_name" value="<?php echo htmlspecialchars($user->user_metadata->display_name); ?>" readonly>
+                            <div class="form-text">Este es tu identificador único en el sistema y no se puede cambiar.</div>
                         </div>
+                        <?php endif; ?>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <button type="button" class="btn btn-secondary" disabled>No hay cambios disponibles</button>
+                            <small class="text-muted text-center mt-2">Los campos de perfil son de solo lectura y no pueden ser modificados.</small>
                         </div>
                     </form>
                 </div>
@@ -173,8 +201,6 @@ include_once __DIR__ . '/../include/header.php';
 document.getElementById('profileForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const display_name = document.getElementById('display_name').value;
-
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
 
@@ -182,16 +208,9 @@ document.getElementById('profileForm').addEventListener('submit', async function
     successMessage.classList.add('d-none');
     errorMessage.classList.add('d-none');
 
-    try {
-        // Aquí iría la lógica para actualizar el perfil con Supabase
-        // Por ahora, solo mostraremos un mensaje de éxito
-
-        successMessage.textContent = 'Perfil actualizado correctamente';
-        successMessage.classList.remove('d-none');
-    } catch (error) {
-        errorMessage.textContent = 'Error al actualizar el perfil: ' + error.message;
-        errorMessage.classList.remove('d-none');
-    }
+    // Mostrar mensaje informativo
+    successMessage.textContent = 'No hay cambios que guardar. Todos los campos son de solo lectura.';
+    successMessage.classList.remove('d-none');
 });
 
 // Script para el cambio de contraseña

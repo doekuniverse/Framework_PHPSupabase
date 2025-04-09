@@ -101,3 +101,61 @@ include_once __DIR__ . '/../include/header.php';
 // Incluir el footer
 include_once __DIR__ . '/../include/footer.php';
 ?>
+
+<script>
+// Detectar si hay un token de acceso en la URL
+if (window.location.hash && window.location.hash.includes('access_token')) {
+    // Extraer el token de acceso
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const accessToken = params.get('access_token');
+    const tokenType = params.get('token_type') || 'bearer';
+    const actionType = params.get('type');
+
+    if (accessToken) {
+        console.log('Token de acceso detectado en la URL');
+
+        // Mostrar un mensaje de carga
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white bg-opacity-75';
+        loadingDiv.style.zIndex = '9999';
+        loadingDiv.innerHTML = `
+            <div class="text-center">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+                <h5>Procesando autenticación...</h5>
+            </div>
+        `;
+        document.body.appendChild(loadingDiv);
+
+        // Guardar el token en la sesión
+        fetch('/auth/save_token.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                access_token: accessToken,
+                token_type: tokenType,
+                action_type: actionType
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error al guardar el token:', data.error);
+                alert('Error al procesar la autenticación: ' + data.error);
+            } else {
+                console.log('Token guardado correctamente');
+                // Redirigir al dashboard
+                window.location.href = '/dashboard/index.php';
+            }
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            alert('Error al procesar la autenticación. Por favor, inténtalo de nuevo.');
+        });
+    }
+}
+</script>

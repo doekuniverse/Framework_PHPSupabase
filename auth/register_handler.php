@@ -19,25 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Obtener datos de la solicitud
 $data = json_decode(file_get_contents('php://input'), true);
 
-// Verificar que se proporcionaron email, nickname y contraseña
-if (!isset($data['email']) || !isset($data['password']) || !isset($data['nickname'])) {
+// Verificar que se proporcionaron email y contraseña
+if (!isset($data['email']) || !isset($data['password'])) {
     header('HTTP/1.1 400 Bad Request');
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Email, nickname y contraseña son requeridos']);
+    echo json_encode(['error' => 'Email y contraseña son requeridos']);
     exit;
 }
 
 $email = $data['email'];
 $password = $data['password'];
-$nickname = $data['nickname'];
-
-// Validar el formato del nickname
-if (!preg_match('/^[a-zA-Z0-9_]+$/', $nickname) || strpos($nickname, ' ') !== false) {
-    header('HTTP/1.1 400 Bad Request');
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'El nickname solo puede contener letras, números y guiones bajos, sin espacios']);
-    exit;
-}
 
 // Verificar que el email no contenga espacios
 if (strpos($email, ' ') !== false) {
@@ -66,6 +57,9 @@ if (strlen($password) < 6) {
 // Endpoint de registro de Supabase
 $url = getenv('SUPABASE_URL') . '/auth/v1/signup';
 
+// Dejar el display_name en blanco
+$displayName = '';
+
 // Configurar la solicitud
 $options = [
     'http' => [
@@ -78,7 +72,7 @@ $options = [
             'email' => $email,
             'password' => $password,
             'data' => [
-                'display_name' => $nickname
+                'display_name' => $displayName  // ID único del usuario
             ]
         ])
     ]

@@ -25,14 +25,7 @@ include_once __DIR__ . '/../include/header.php';
                 </div>
                 <div class="card-body">
                     <form id="registerForm">
-                        <div class="mb-3">
-                            <label for="nickname" class="form-label">Nickname</label>
-                            <div class="input-group">
-                                <span class="input-group-text">@</span>
-                                <input type="text" class="form-control" id="nickname" name="nickname" required pattern="[a-zA-Z0-9_]+" maxlength="30" onkeypress="return event.key !== ' '" onpaste="return handlePaste(event, 'nickname');">
-                            </div>
-                            <div class="form-text">Solo letras, números y guiones bajos. Sin espacios ni caracteres especiales.</div>
-                        </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" required onkeypress="return event.key !== ' '" onpaste="return handlePaste(event, 'email');">
@@ -92,18 +85,9 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     e.preventDefault();
 
     const email = document.getElementById('email').value;
-    const nickname = document.getElementById('nickname').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
     const errorMessage = document.getElementById('errorMessage');
-
-    // Validar el formato del nickname
-    const nicknameRegex = /^[a-zA-Z0-9_]+$/;
-    if (!nicknameRegex.test(nickname)) {
-        errorMessage.textContent = 'El nickname solo puede contener letras, números y guiones bajos';
-        errorMessage.classList.remove('d-none');
-        return;
-    }
 
     // Validar que las contraseñas coincidan
     if (password !== confirmPassword) {
@@ -126,7 +110,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password, nickname })
+            body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();

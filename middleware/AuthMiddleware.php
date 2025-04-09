@@ -126,6 +126,13 @@ class AuthMiddleware {
             return $_SESSION['supabase_token'];
         }
 
+        // 4. Verificar si hay un token en la URL (para redirecciones de confirmación)
+        if (isset($_GET['access_token'])) {
+            // Guardar el token en la sesión para futuras solicitudes
+            $_SESSION['supabase_token'] = $_GET['access_token'];
+            return $_GET['access_token'];
+        }
+
         return null;
     }
 

@@ -37,6 +37,10 @@ include_once __DIR__ . '/../include/header.php';
                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
                             <span class="error-text"></span>
                         </div>
+                        <div class="alert alert-success d-none" id="successMessage" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            <span class="success-text"></span>
+                        </div>
                         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                     </form>
                     <div class="mt-3">
@@ -49,6 +53,30 @@ include_once __DIR__ . '/../include/header.php';
 </div>
 
 <script>
+// Función para obtener parámetros de la URL
+function getUrlParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+// Mostrar mensajes de error o éxito basados en los parámetros de la URL
+document.addEventListener('DOMContentLoaded', function() {
+    const errorParam = getUrlParameter('error');
+    const successParam = getUrlParameter('success');
+    const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
+
+    if (errorParam) {
+        errorMessage.querySelector('.error-text').textContent = decodeURIComponent(errorParam);
+        errorMessage.classList.remove('d-none');
+    }
+
+    if (successParam) {
+        successMessage.querySelector('.success-text').textContent = decodeURIComponent(successParam);
+        successMessage.classList.remove('d-none');
+    }
+});
+
 // Script para manejar el inicio de sesión con Supabase
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
